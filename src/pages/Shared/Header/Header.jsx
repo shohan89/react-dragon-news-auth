@@ -1,8 +1,10 @@
+import logo from '../../../assets/logo.png';
 
 const Header = () => {
     return (
         <div>
-            <h2>This is header.</h2>
+            <img src={logo} alt="" />
+            <p>Journalism Without Fear or Favour</p>
         </div>
     );
 };
