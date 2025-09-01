@@ -2,12 +2,18 @@ import { Link } from 'react-router';
 import Navbar from '../Shared/Navbar/Navbar';
 
 const Register = () => {
+    const handleRegister = e => {
+        e.preventDefault();
+        const form = new FormData(e.target);
+        const name = form.get('name');
+        console.log("🚀 ~ handleRegister ~ name:", name)
+    }
     return (
         <div>
             <Navbar />
             <div>
                 <h2 className='text-2xl font-bold text-center'>Please Register</h2>
-                <form className='lg:w-1/2 md:w-3/4 mx-auto my-10'>
+                <form onSubmit={handleRegister} className='lg:w-1/2 md:w-3/4 mx-auto my-10'>
                     <fieldset className="fieldset space-y-2">
                         <label className="label">Name</label>
                         <input type="text" name='name' className="input w-full" placeholder="Your name" />
