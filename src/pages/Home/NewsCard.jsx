@@ -1,8 +1,9 @@
 
-const NewsCard = () => {
+const NewsCard = ({ aNews }) => {
+    const { title } = aNews;
     return (
         <div>
-            <h2>This is news card.</h2>
+            <h2>{title}</h2>
         </div>
     );
 };
