@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { createContext, useState } from 'react';
+import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.init';
 
 export const AuthContext = createContext(null);
@@ -12,6 +12,19 @@ const AuthProvider = ({ children }) => {
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
+
+    
+
+    // create an observer to track users
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            console.log("User in the auth state change", currentUser);
+        })
+        return () =>{
+            unsubscribe(); //? clear the state after unmount the comp
+        } 
+    },[]);
 
 
     // context value
